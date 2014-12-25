@@ -2,15 +2,30 @@
 
 {% block titleblock %}
 <title>recommendations</title>
+<style>
+li {padding-left: 20px;background-color: rgba(255,255,255,.5);border: 1px solid rgb(200,200,200)}
+.time{font-size: small;color: grey}
+.category{text-decoration: underline;font-size: small; }
+.title{font-size: 25px}
+.comment{font-style: italic;}
+</style>
 {% endblock %}
 
 {% block bodyblock %}
 
+<a href="/recommendation/post/"> <button style="margin:0 40% 40px 40%;" class="button-primary">New</button> </a>
 
+<div class="eight columns">
+<ul>
+{% for thread in threads %}
+<li><span class="title">{{ thread.title }}</span><br>
+<span class="category">{{thread.category | upper}}</span>  | <span class="author">{{thread.poster.display_name}}</span> | <span class="time">{{thread.date}}</span><br>
+<p class="comment">{{thread.comment}}</p></li>
+{% endfor %}
+</ul>
       <hr>
 
-      <footer>
-        <p>&copy; Ziqi Xiong 2014</p>
-      </footer>
+</div>
+
 
 {% endblock %}

@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block titleblock %}
+<title>Post</title>
+{% endblock %}
+
+{% block bodyblock %}
+<div class="eight columns">
+<div class="docs-section" id="forms">
+      <h1 class="docs-header">New Recommendation</h6>
+      <div class="docs-example docs-example-forms">
+        <form method="post" action"/">
+        	    {% csrf_token %}
+          <div class="row">
+            <div class="five columns">
+              <label for="titleF">Title</label>
+              <input class="u-full-width" type="text" name="title" id="titleF">
+            </div>
+            <div class="six columns">
+              <label for="categoryF">Category</label>
+              <select class="u-full-width" name="category" id="categoryF">
+              	{% for category in categories %}
+                <option value="{{category.name}}">{{category.name}}</option>
+                {% endfor %}
+              </select>
+            </div>
+          </div>
+          <label for="exampleMessage">Comment</label>
+          <textarea class="u-full-width" id="exampleMessage" name="comment"></textarea>
+          <div class="ten columns">
+              <label for="imgF">Image Link</label>
+              <input class="u-full-width" type="url" name="img" id="imgF" style="height:20px">
+            </div>
+          <input class="button-primary" type="submit" value="Submit">
+        </form>
+      </div>
+ </div>
+{% endblock %}

@@ -3,6 +3,6 @@ from recommendation import views
 
 urlpatterns = patterns('',
     url(r'^$', views.index, name='index'),
-    url(r'thread/(?P<thread_id>\d+)/$',views.thread,name="thread"),
+    url(r'post/$',views.post,name='post'),
     url(r'category/(?P<category_name>[a-z]+)/$',views.category,name="category")
 )
