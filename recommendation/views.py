@@ -1,12 +1,14 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from recommendation.models import Thread,Category
+from django.contrib.auth.models import User
+from django.contrib.auth import authenticate, login as do_login
 
 # Create your views here.
 
 def index(request):
-	return render(request, 'index.html',{'threads': Thread.objects.order_by('-date')[:10]})
+	return render(request, 'index.html',{'threads': Thread.objects.order_by('-date'),'categories':Category.objects.all()})
 
 def post(request):
 	if request.method == "GET":
@@ -19,7 +21,24 @@ def post(request):
 		image_link = request.POST['img']
 		thread = Thread(poster = request.user, comment=comment, title = title, category = category)
 		thread.save()
-		return redirect('/')
+		return redirect('/recommendation')
+
+
+def login(request):
+	if request.method == "GET":
+		users = User.objects.all()
+		return render(request,'login.html',{'users':users})
+	else:
+		username = request.POST['user']
+		password = request.POST['password']
+		user = authenticate(username=username,password=password)
+		if user:
+			do_login(request,user)
+			return redirect('/recommendation')
+		else:
+			users = User.objects.all()
+			context = {'invalid_login':True,'users':users}
+			return render(request,'login.html',context)
 
 def category(request,category_name):
 	return HttpResponse("The catgories")

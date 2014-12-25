@@ -3,29 +3,49 @@
 {% block titleblock %}
 <title>recommendations</title>
 <style>
-li {padding-left: 20px;background-color: rgba(255,255,255,.5);border: 1px solid rgb(200,200,200)}
+li {background-image: url("/static/images/post.png");margin:20px; padding-left: 20px;background-color: rgba(255,255,255,.5);border: 1px solid rgb(200,200,200)}
 .time{font-size: small;color: grey}
 .category{text-decoration: underline;font-size: small; }
 .title{font-size: 25px}
-.comment{font-style: italic;}
+.comment{font-style: italic;padding:10px;word-wrap:break-word;}
+img {padding:10px;}
+.button-primary {width:40%;margin-left:20%;margin-bottom: 50px}
+.offscreen { 
+  position: absolute; 
+  top: -30em; 
+  left: -300em; 
+} 
+
+
 </style>
 {% endblock %}
 
 {% block bodyblock %}
 
-<a href="/recommendation/post/"> <button style="margin:0 40% 40px 40%;" class="button-primary">New</button> </a>
 
-<div class="eight columns">
+
+
+<a href="/recommendation/post/"> <button class="button-primary">New</button> </a>
+<div class="row">
+<div class="fourteen columns">
+
+
 <ul>
 {% for thread in threads %}
+
+<div class="five columns">
 <li><span class="title">{{ thread.title }}</span><br>
-<span class="category">{{thread.category | upper}}</span>  | <span class="author">{{thread.poster.display_name}}</span> | <span class="time">{{thread.date}}</span><br>
-<p class="comment">{{thread.comment}}</p></li>
+<span class="category">{{thread.category | upper}}</span>  | <span class="author">{{thread.poster.username}}</span> | <span class="time">{{thread.date}}</span><br>
+<p class="comment">{{thread.comment}}</p><br>
+{% if thread.image_link %} <img src="{{thread.image_link}}"> {% endif %} </li>
+</div>
+
 {% endfor %}
 </ul>
-      <hr>
+
 
 </div>
 
+</div>
 
 {% endblock %}

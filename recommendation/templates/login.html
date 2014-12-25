@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block titleblock %}
+<title>login</title>
+
+{% endblock %}
+
+{% block bodyblock %}
+
+<div class="eight columns">
+<div class="docs-section" id="forms">
+      <h1 class="docs-header">Login</h1>
+      <div class="docs-example docs-example-forms">
+        <form method="post" action"/">
+        	    {% csrf_token %}
+        {% if invalid_login %}
+        <br><span style="color:red">invalid login</span>
+        {% endif %}
+          <div class="row">
+
+            <div class="six columns">
+              <label for="userF">User</label>
+              <select class="u-full-width" name="user" id="userF">
+              	{% for user in users %}
+              	{% if user.username != "admin" %}
+                <option value="{{user.username}}">{{user.username}}</option>
+                {% endif %}
+                {% endfor %}
+              </select>
+            </div>
+
+          </div>
+          <div class="row">
+          <div class="six columns">
+              <label for="passF" id="passFF">Password</label>
+              <input class="u-full-width" type="password" name="password" id="passF">
+            </div>
+        </div>
+          <input class="button-primary" type="submit" value="Submit">
+        </form>
+      </div>
+ </div>
+
+{% endblock %}

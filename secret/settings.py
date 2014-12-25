@@ -53,6 +53,10 @@ ROOT_URLCONF = 'secret.urls'
 
 WSGI_APPLICATION = 'secret.wsgi.application'
 
+#Authentication backends
+AUTHENTICATION_BACKENDS = (
+        'django.contrib.auth.backends.ModelBackend',
+    )
 
 # Database
 # https://docs.djangoproject.com/en/1.7/ref/settings/#databases
