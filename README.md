@@ -1,5 +1,4 @@
 DoubleSpace
 ===========
 
-A website created for ZQ and Rali
-
+A sharing and communicating website for two users
