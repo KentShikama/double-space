@@ -10,6 +10,7 @@ li {background-image: url("/static/images/post.png");margin:20px; padding-left: 
 .comment{font-style: italic;padding:10px;word-wrap:break-word;}
 img {padding:10px;}
 .button-primary {width:40%;margin-left:20%;margin-bottom: 50px}
+.details {color: grey}
 .offscreen { 
   position: absolute; 
   top: -30em; 
@@ -36,8 +37,9 @@ img {padding:10px;}
 <div class="five columns">
 <li><span class="title">{{ thread.title }}</span><br>
 <span class="category">{{thread.category | upper}}</span>  | <span class="author">{{thread.poster.username}}</span> | <span class="time">{{thread.date}}</span><br>
+<a href="javascript:void()" class="details">Details</a>
 <p class="comment">{{thread.comment}}</p><br>
-{% if thread.image_link %} <img src="{{thread.image_link}}"> {% endif %} </li>
+{% if thread.image_link %} <img src="{{thread.image_link}}" class="image"> {% endif %} </li>
 </div>
 
 {% endfor %}
@@ -48,4 +50,16 @@ img {padding:10px;}
 
 </div>
 
+<script src="/static/jquery.js"></script>
+<script>
+$('.comment').hide();
+$('.image').hide();
+$('.details').click(function(){
+$('.details').show();
+$('.comment').hide();
+$('.image').hide();
+$(this).hide();
+	$(this).siblings().fadeIn('slow')
+})
+</script>
 {% endblock %}

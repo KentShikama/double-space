@@ -13,7 +13,8 @@ class Category(models.Model):
 class Thread(models.Model):
 	title = models.CharField(max_length=128)
 	poster = models.ForeignKey(User)
-	image_link=models.TextField(default="http://ts2.mm.bing.net/th?id=HN.608014447209022679&pid=1.7")
+	image_link=models.TextField(default=None, blank=True, null=True)
+	detail_link=models.TextField(default=None, blank=True, null=True)
 	category = models.ForeignKey(Category)
 	comment = models.TextField()
 	date = models.DateTimeField(default = timezone.now)

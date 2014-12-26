@@ -19,7 +19,7 @@ def post(request):
 		category = Category.objects.get(name = request.POST['category'])
 		comment = request.POST['comment']
 		image_link = request.POST['img']
-		thread = Thread(poster = request.user, comment=comment, title = title, category = category)
+		thread = Thread(poster = request.user, comment=comment, title = title, category = category,image_link=image_link)
 		thread.save()
 		return redirect('/recommendation')
 
