@@ -11,6 +11,7 @@ li {background-image: url("/static/images/post.png");margin:20px; padding-left: 
 img {padding:10px;}
 .button-primary {width:40%;margin-left:20%;margin-bottom: 50px}
 .details {color: grey}
+.detail_link {color:rgb(10,10,10);}
 .offscreen { 
   position: absolute; 
   top: -30em; 
@@ -39,7 +40,8 @@ img {padding:10px;}
 <span class="category">{{thread.category | upper}}</span>  | <span class="author">{{thread.poster.username}}</span> | <span class="time">{{thread.date}}</span><br>
 <a href="javascript:void()" class="details">Details</a>
 <p class="comment">{{thread.comment}}</p><br>
-{% if thread.image_link %} <img src="{{thread.image_link}}" class="image"> {% endif %} </li>
+{% if thread.image_link %} <img src="{{thread.image_link}}" class="image"> {% endif %}<br>
+{% if thread.detail_link %} <a href="{{thread.detail_link}}" class="detail_link">Click here for more</a>{% endif %} </li>
 </div>
 
 {% endfor %}
@@ -54,8 +56,10 @@ img {padding:10px;}
 <script>
 $('.comment').hide();
 $('.image').hide();
+$('.detail_link').hide();
 $('.details').click(function(){
 $('.details').show();
+$('.detail_link').hide();
 $('.comment').hide();
 $('.image').hide();
 $(this).hide();

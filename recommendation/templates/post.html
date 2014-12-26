@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block titleblock %}
 <title>Post</title>
-<style> .button-primary{margin:20px;}
+<style> .button-primary{margin-top:20px;}
      </style>
 {% endblock %}
 
@@ -15,7 +15,7 @@
           <div class="row">
             <div class="five columns">
               <label for="titleF">Title</label>
-              <input class="u-full-width" type="text" name="title" id="titleF">
+              <input class="u-full-width" type="text" name="title" id="titleF" required="required">
             </div>
             <div class="six columns">
               <label for="categoryF">Category</label>
@@ -34,8 +34,23 @@
               <input class="u-full-width" type="url" name="img" id="imgF">
             </div>
           </div>
+          <div class="row">
+          <div class="ten columns">
+              <label for="detF" id="detFF">Detail Link</label>
+              <input class="u-full-width" type="url" name="det" id="detF">
+            </div>
+          </div>
+          <div class="row">
+            <div class="ten columns">
           <input class="button-primary" type="submit" value="Submit">
+        </div>
+        </div>
         </form>
-      </div>
+      </div> 
+              <div class="row">
+          <a href="/recommendation"><button id="back">Back</button></a>
+    </div>        
  </div>
+   
+
 {% endblock %}
