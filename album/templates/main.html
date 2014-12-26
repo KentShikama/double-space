@@ -2,6 +2,10 @@
 
 {% block titleblock %}
 <title>upload</title>
+<style>
+img.small {width: 250px;height: 150px;}
+img:hover {border:solid 2px white;}
+</style>
 {% endblock %}
 
 {% block bodyblock %}
@@ -15,17 +19,43 @@
 	<input class="button" value="Select" id="select">
 	<input class="button-primary" type="submit" value="Submit">
 	<span id="info"></span>
+	<div class="row"><p>Click to view an image at its original size<br>Click it again to view other images</p></div>
 </div>
 </form>
+<div class="ten columns">
+<ul>
+{% for picture in pictures %}
+<div class="three columns">
+<li><img class="small" src="/static/{{picture.title}}"></li>
+</div>
+{% endfor %}
+</ul>
+</div>
 
 <script src="/static/jquery.js"></script>
 <script>
+var click = false;
 $('#select').click(function()
 	{$('#file').click()}
-	)
+	);
 $('#file').change(function(){
 	var file = $('#file').val();
 	$('#info').html(file)
+});
+
+$('img').click(function(){
+if (click == false){
+	$('img').hide();
+	$(this).show();
+	$(this).height($(this)[0].naturalHeight);
+	$(this).width($(this)[0].naturalWidth);
+    click = true
+    }
+ else {
+ 	$('img').show();
+	$('img').width(250).height(150);
+	click = false;
+ }
 })
 </script>
 {% endblock %}

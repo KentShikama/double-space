@@ -6,4 +6,8 @@ from django.utils import timezone
 
 class Picture(models.Model):
 	date = models.DateTimeField(default = timezone.now)
-	image = models.ImageField(upload_to='media/photos')
+	image = models.ImageField(upload_to='album/static/')
+	def title(self):
+		url = self.image.url
+		parts=url.split('/')
+		return parts[2]

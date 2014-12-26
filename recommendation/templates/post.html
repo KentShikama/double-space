@@ -29,13 +29,13 @@
           <label for="exampleMessage">Comment</label>
           <textarea class="u-full-width" id="exampleMessage" name="comment"></textarea>
           <div class="row">
-          <div class="ten columns">
+          <div class="ten columns" id="im">
               <label for="imgF" id="imgFF">Image Link</label>
               <input class="u-full-width" type="url" name="img" id="imgF">
             </div>
           </div>
           <div class="row">
-          <div class="ten columns">
+          <div class="ten columns" id="de">
               <label for="detF" id="detFF">Detail Link</label>
               <input class="u-full-width" type="url" name="det" id="detF">
             </div>
@@ -52,5 +52,13 @@
     </div>        
  </div>
    
-
+<script src="/static/jquery.js"></script>
+<script>
+$("#de").hide();
+$('#im').hide();
+$('select').change(function(){
+  $("#de").fadeIn();
+$('#im').fadeIn();
+})
+</script>
 {% endblock %}

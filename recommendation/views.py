@@ -10,6 +10,11 @@ from django.contrib.auth import authenticate, login as do_login
 def index(request):
 	return render(request, 'index.html',{'threads': Thread.objects.order_by('-date'),'categories':Category.objects.all()})
 
+def category(request,category_name):
+	category = Category.objects.filter(name=category_name)
+	threads = Thread.objects.filter(category=category)
+	return render(request,'index.html',{'threads':threads,'incomplete':True})
+
 def post(request):
 	if request.method == "GET":
 		categories = Category.objects.all()
@@ -40,6 +45,3 @@ def login(request):
 			users = User.objects.all()
 			context = {'invalid_login':True,'users':users}
 			return render(request,'login.html',context)
-
-def category(request,category_name):
-	return HttpResponse("The catgories")

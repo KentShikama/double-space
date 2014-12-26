@@ -4,8 +4,8 @@
 <title>recommendations</title>
 <style>
 li {background-image: url("/static/images/post.png");margin:20px; padding-left: 20px;background-color: rgba(255,255,255,.5);border: 1px solid rgb(200,200,200)}
-.time{font-size: small;color: grey}
-.category{text-decoration: underline;font-size: small; }
+.time, .author{font-size: small;color: grey}
+.category, .cat{text-decoration: underline;font-size: large; color: blue }
 .title{font-size: 25px}
 .comment{font-style: italic;padding:10px;word-wrap:break-word;}
 img {padding:10px;}
@@ -17,7 +17,7 @@ img {padding:10px;}
   top: -30em; 
   left: -300em; 
 } 
-
+#back {font-size: 1em;color:white;margin:5em;}
 
 </style>
 {% endblock %}
@@ -26,8 +26,10 @@ img {padding:10px;}
 
 
 
-
 <a href="/recommendation/post/"> <button class="button-primary">New</button> </a>
+{% if incomplete %}
+<a href="/recommendation/" id="back">Back</a>
+{% endif %}
 <div class="row">
 <div class="fourteen columns">
 
@@ -37,8 +39,8 @@ img {padding:10px;}
 
 <div class="five columns">
 <li class='item'><span class="title">{{ thread.title }}</span><br>
-<span class="category">{{thread.category | upper}}</span>  | <span class="author">{{thread.poster.username}}</span> | <span class="time">{{thread.date}}</span><br>
-<a href="javascript:void()" class="details">Details</a>
+<span class="category"><a class="cat" href="/recommendation/{{thread.category}}/">{{thread.category | upper}}</a></span>  | <span class="author">{{thread.poster.username}}</span> | <span class="time">{{thread.date}}</span><br>
+<a href="javascript:void(0)" class="details">Details</a>
 <p class="comment">{{thread.comment}}</p><br>
 {% if thread.image_link %} <img src="{{thread.image_link}}" class="image"> {% endif %}<br>
 {% if thread.detail_link %} <a href="{{thread.detail_link}}" class="detail_link">Click here for more</a>{% endif %} </li>

@@ -7,7 +7,8 @@ from django.contrib.auth import authenticate, login as do_login
 # Create your views here.
 
 def index(request):
-	return render(request,"main.html")
+	pictures=Picture.objects.order_by('-date')
+	return render(request,"main.html",{'pictures':pictures})
 
 def upload(request):
 	pics = request.FILES.getlist('photo')
