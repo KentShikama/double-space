@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+                    {% block titleblock %}
+                    {% endblock %}
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="">
+        <meta name="author" content="">
+
+
+  <link rel="stylesheet" href="/static/css/normalize.css">
+  <link rel="stylesheet" href="/static/css/skeleton.css">
+
+  <!-- Favicon
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="icon" type="image/png" href="/static/images/favicon.png" />
+<style>
+ body {         background-size:cover; 
+                background-attachment:fixed;
+                background-image: url("/static/images/post.png");
+                margin:50px;
+                padding: 50px; /* 60px to make the container go all the way to the bottom of the topbar */
+            }
+footer {
+    color:grey;
+    font-size: 10px
+}
+
+</style>
+</head>
+    </head>
+<body>
+  {% block bodyblock %}   
+  {% endblock %}
+  <br>
+</body>

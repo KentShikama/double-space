@@ -10,6 +10,7 @@ urlpatterns = patterns('',
 
     url(r'^admin/', include(admin.site.urls)),
     url(r'^login/$',views.login,name='login'),
+    url(r'^album/',include("album.urls")),
     url(r'^recommendation/',include("recommendation.urls"))
 
 )

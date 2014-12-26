@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block titleblock %}
+<title>upload</title>
+{% endblock %}
+
+{% block bodyblock %}
+
+<form method="post" action="/album/upload/" enctype="multipart/form-data">
+	{% csrf_token %}
+<input type="file" id="file" multiple="true" name="photo" style="display:none;">
+
+<div class="row">
+
+	<input class="button" value="Select" id="select">
+	<input class="button-primary" type="submit" value="Submit">
+	<span id="info"></span>
+</div>
+</form>
+
+<script src="/static/jquery.js"></script>
+<script>
+$('#select').click(function()
+	{$('#file').click()}
+	)
+$('#file').change(function(){
+	var file = $('#file').val();
+	$('#info').html(file)
+})
+</script>
+{% endblock %}

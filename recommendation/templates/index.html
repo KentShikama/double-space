@@ -36,7 +36,7 @@ img {padding:10px;}
 {% for thread in threads %}
 
 <div class="five columns">
-<li><span class="title">{{ thread.title }}</span><br>
+<li class='item'><span class="title">{{ thread.title }}</span><br>
 <span class="category">{{thread.category | upper}}</span>  | <span class="author">{{thread.poster.username}}</span> | <span class="time">{{thread.date}}</span><br>
 <a href="javascript:void()" class="details">Details</a>
 <p class="comment">{{thread.comment}}</p><br>
