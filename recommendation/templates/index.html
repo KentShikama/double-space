@@ -3,7 +3,7 @@
 {% block titleblock %}
 <title>recommendations</title>
 <style>
-li {background-image: url("/static/images/post.png");margin:20px; padding-left: 20px;background-color: rgba(255,255,255,.5);border: 1px solid rgb(200,200,200)}
+.item {background-image: url("/static/images/post.png");margin:20px; padding-left: 20px;background-color: rgba(255,255,255,.5);border: 1px solid rgb(200,200,200)}
 .time, .author{font-size: small;color: grey}
 .category, .cat{text-decoration: underline;font-size: large; color: blue }
 .title{font-size: 25px}
@@ -12,12 +12,8 @@ img {padding:10px;}
 .button-primary {width:40%;margin-left:20%;margin-bottom: 50px}
 .details {color: grey}
 .detail_link {color:rgb(10,10,10);}
-.offscreen { 
-  position: absolute; 
-  top: -30em; 
-  left: -300em; 
-} 
 #back {font-size: 1em;color:white;margin:5em;}
+
 
 </style>
 {% endblock %}
@@ -43,7 +39,8 @@ img {padding:10px;}
 <a href="javascript:void(0)" class="details">Details</a>
 <p class="comment">{{thread.comment}}</p><br>
 {% if thread.image_link %} <img src="{{thread.image_link}}" class="image"> {% endif %}<br>
-{% if thread.detail_link %} <a href="{{thread.detail_link}}" class="detail_link">Click here for more</a>{% endif %} </li>
+{% if thread.detail_link %} <a href="{{thread.detail_link}}" class="detail_link">Click here for more</a>{% endif %}
+{% if thread.video_link %} {{thread.video_link | safe}} </li> {% endif %} 
 </div>
 
 {% endfor %}
@@ -56,16 +53,26 @@ img {padding:10px;}
 
 <script src="/static/jquery.js"></script>
 <script>
+
+function larger (a,b) {
+	if (a == undefined) {return b}
+	else if (b==undefined) {return a}
+	else if (a>b) {return a}
+	else {return b}
+}
 $('.comment').hide();
 $('.image').hide();
 $('.detail_link').hide();
+$('iframe').hide()
 $('.details').click(function(){
 $('.details').show();
+$('iframe').hide()
 $('.detail_link').hide();
 $('.comment').hide();
 $('.image').hide();
 $(this).hide();
-	$(this).siblings().fadeIn('slow')
+$(this).siblings().fadeIn('slow');
+$('img').css('width',$('.item').width());
 })
 </script>
 {% endblock %}

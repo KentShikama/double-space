@@ -25,7 +25,8 @@ def post(request):
 		comment = request.POST['comment']
 		image_link = request.POST['img']
 		detail_link = request.POST['det']
-		thread = Thread(poster = request.user, comment=comment, title = title, category = category,image_link=image_link,detail_link=detail_link)
+		video_link = request.POST['vid']
+		thread = Thread(poster = request.user, comment=comment, title = title, category = category,video_link=video_link,image_link=image_link,detail_link=detail_link)
 		thread.save()
 		return redirect('/recommendation')
 

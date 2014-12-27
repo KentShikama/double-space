@@ -15,6 +15,7 @@ class Thread(models.Model):
 	poster = models.ForeignKey(User)
 	image_link=models.TextField(default=None, blank=True, null=True)
 	detail_link=models.TextField(default=None, blank=True, null=True)
+	video_link=models.TextField(default=None,blank=True,null=True)
 	category = models.ForeignKey(Category)
 	comment = models.TextField()
 	date = models.DateTimeField(default = timezone.now)

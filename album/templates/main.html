@@ -3,8 +3,8 @@
 {% block titleblock %}
 <title>upload</title>
 <style>
-img.small {width: 250px;height: 150px;}
-img:hover {border:solid 2px white;}
+img.small {width: 200px;height: 120px;border-left;float:left;}
+img:hover {width:190px;height:115px;border:solid 2px white;float:left;}
 </style>
 {% endblock %}
 
@@ -25,9 +25,9 @@ img:hover {border:solid 2px white;}
 <div class="ten columns">
 <ul>
 {% for picture in pictures %}
-<div class="three columns">
+
 <li><img class="small" src="/static/{{picture.title}}"></li>
-</div>
+
 {% endfor %}
 </ul>
 </div>
@@ -53,9 +53,9 @@ if (click == false){
     }
  else {
  	$('img').show();
-	$('img').width(250).height(150);
+	$('img').width(200).height(120);
 	click = false;
  }
-})
+});
 </script>
 {% endblock %}

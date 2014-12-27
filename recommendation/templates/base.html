@@ -7,8 +7,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="">
         <meta name="author" content="">
-
-
+  
   <link rel="stylesheet" href="/static/css/normalize.css">
   <link rel="stylesheet" href="/static/css/skeleton.css">
 
@@ -19,19 +18,61 @@
  body {         background-size:cover; 
                 background-attachment:fixed;
                 background-image: url("/static/images/post.png");
-                margin:50px;
-                padding: 50px; /* 60px to make the container go all the way to the bottom of the topbar */
             }
 footer {
     color:grey;
     font-size: 10px
 }
+#block{ margin:50px;
+                padding: 50px; }
+#nav {
+  position:fixed;
+  left:0%;
+}
 
+.navli{
+  height:4em;
+  float:left;
+  position:relative;
+  top:-3em;
+}
+.nava { 
+  padding:10px;
+  text-decoration: none;
+  font-size: 1.2em;
+  color:#4169e1;
+  width: 100px; 
+  height: 60px; 
+  border-left:solid 3px #4169e1;
+  background-color: rgba(255,255,255,.85)
+  
+} 
+
+.nava:hover { 
+  color:white;
+  background-color:#4169e1
+}
 </style>
 </head>
     </head>
 <body>
+
+<div id="nav">
+<ul id="navul">
+  <li class="navli"><a class="nava" href="/recommendation">Recommendation</a></li>
+  <li class="navli"><a class="nava" href="/album">Album</a></li>
+  {% if user.is_authenticated %}
+  <li class="navli"><a class="nava" href="/login" style="color:black">{{user.username}}</a></li>
+  {% endif %}
+  {% if not user.is_authenticated %}
+  <li class="navli"><a class="nava" href="/login" style="color:black">Login</a></li>
+  {% endif %}
+</ul>
+</div>
+
+  <div id="block">
   {% block bodyblock %}   
   {% endblock %}
   <br>
+</div>
 </body>

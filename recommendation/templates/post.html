@@ -19,7 +19,8 @@
             </div>
             <div class="six columns">
               <label for="categoryF">Category</label>
-              <select class="u-full-width" name="category" id="categoryF">
+              <select class="u-full-width" name="category" id="categoryF" default="none">
+                <option selected disabled hidden value=''></option>
               	{% for category in categories %}
                 <option value="{{category.name}}">{{category.name}}</option>
                 {% endfor %}
@@ -28,6 +29,12 @@
           </div>
           <label for="exampleMessage">Comment</label>
           <textarea class="u-full-width" id="exampleMessage" name="comment"></textarea>
+          <div class="row">
+          <div class="ten columns" id="vi">
+              <label for="vidF" id="vidFF">Video Link(iFrame address)</label>
+              <input class="u-full-width" type="text" name="vid" id="vidF">
+            </div>
+          </div>
           <div class="row">
           <div class="ten columns" id="im">
               <label for="imgF" id="imgFF">Image Link</label>
@@ -56,9 +63,11 @@
 <script>
 $("#de").hide();
 $('#im').hide();
+$('#vi').hide();
 $('select').change(function(){
   $("#de").fadeIn();
 $('#im').fadeIn();
+$('#vi').fadeIn();
 })
 </script>
 {% endblock %}
