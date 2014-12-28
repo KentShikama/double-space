@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% block titleblock %}
+<title>Common Docs</title>
+<style>
+.title {
+	font-size: 2em;
+}
+.item {
+	margin-top: 1em;
+	background-image: url("/static/images/paper.jpg");
+	width:50%;
+	padding:2em;
+	box-shadow: 10px 10px 5px rgba(0,0,0,.3);
+}
+.content{
+    height: 300px;
+    width: 60%;
+    border:solid 2px grey;
+    overflow: scroll;}
+.button-primary {width:40%;margin-left:20%;margin-bottom: 50px}
+</style>
+{% endblock %}
+
+{% block bodyblock %}
+<button class="button-primary" id="newBut">New</button> 
+
+<div class="item new">
+<form action="new/" method="post">
+	    {% csrf_token %}
+	<input type="text" name="title" class="title"><br>
+	<textarea name="content" class="content"></textarea><br>
+    <input class="button" type="submit" value="Submit">
+</form>
+</div>
+
+
+{% if docs %}
+{% for doc in docs %}
+<div class="item">
+<form action="/doc/" method="post">
+	    {% csrf_token %}
+    <input type="hidden" name="id" value="{{doc.id}}">
+	<input type="text" name="title" disabled="disabled" value="{{doc.title}}" class="title"><br>
+	<a href="javascript:void(0)" class="edit">edit</a><br>
+	<textarea name="content" class="content" disabled="disabled">{{doc.content}}</textarea><br>
+    <input class="button" type="submit" value="Submit">
+</form>
+</div>
+{% endfor %}
+{% endif %}
+
+<script src="/static/jquery.js"> </script>
+<script>
+$('.new').hide();
+$('#newBut').click(function(){
+	$('.new').fadeIn()
+	$('.new .button').show();
+})
+$('.button').hide();
+$('.edit').click(function(){
+	$(this).siblings('.button').fadeIn();
+	$(this).siblings('input').removeAttr('disabled');
+	$(this).siblings('textArea').removeAttr('disabled');
+})
+</script>
+{% endblock %}
