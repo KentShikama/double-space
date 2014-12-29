@@ -7,6 +7,7 @@ from django.contrib.auth import authenticate, login as do_login
 
 # Create your views here.
 
+
 def index(request):
 	return render(request, 'index.html',{'threads': Thread.objects.order_by('-date'),'categories':Category.objects.all()})
 

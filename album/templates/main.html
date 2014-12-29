@@ -3,7 +3,7 @@
 {% block titleblock %}
 <title>upload</title>
 <style>
-img.small {width: 200px;height: 120px;border-left;float:left;}
+img.small {width: 200px;height: 120px;border-left;float:left;cursor:pointer;}
 img:hover {width:190px;height:115px;border:solid 2px white;float:left;}
 </style>
 {% endblock %}
@@ -19,7 +19,6 @@ img:hover {width:190px;height:115px;border:solid 2px white;float:left;}
 	<input class="button" value="Select" id="select">
 	<input class="button-primary" type="submit" value="Submit">
 	<span id="info"></span>
-	<div class="row"><p>Click to view an image at its original size<br>Click it again to view other images</p></div>
 </div>
 </form>
 <div class="ten columns">
@@ -49,12 +48,14 @@ if (click == false){
 	$(this).show();
 	$(this).height($(this)[0].naturalHeight);
 	$(this).width($(this)[0].naturalWidth);
-    click = true
+    click = true;
+    $('img').css('cursor','url(http://www.rw-designer.com/cursor-extern.php?id=2843)');
     }
  else {
  	$('img').show();
 	$('img').width(200).height(120);
 	click = false;
+	$('img').css('cursor','url(http://www.rw-designer.com/cursor-extern.php?id=2843)');
  }
 });
 </script>
