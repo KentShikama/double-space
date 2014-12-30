@@ -39,7 +39,8 @@ INSTALLED_APPS = (
     'recommendation',
     'album',
     'doc',
-)
+    'portal',
+    )
 
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',

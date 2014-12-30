@@ -11,3 +11,5 @@ class Picture(models.Model):
 		url = self.image.url
 		parts=url.split('/')
 		return parts[2]
+	def __str__(self):
+		return self.title()

@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% block titleblock %}
+<title>Double Space</title>
+<style>
+.picture{
+	max-height: 300px;
+	margin-left: auto;
+	margin-right: auto
+}
+.carousel{
+	display:none;
+	width:50%;
+	background-color: rgba(255,255,255,0.6);
+	border:ridge;
+}
+.component {float: left}
+.board {margin:2em;
+        font-family: monospace;
+        font-size: 1.5em;}
+.msg {color:rgba(0,0,0,.7);}
+</style>
+<link rel="stylesheet" type="text/css" href="/static/slick/slick.css"/>
+{% endblock %}
+
+{% block bodyblock %}
+
+<div class="component carousel">
+
+  {% for picture in pictures %}
+  <div>
+  	<a href="/album"><img class="picture" a="/album/" src="/static/{{picture.title}}"></a>
+  </div>
+  {% endfor %}
+
+</div>
+
+<div class="component board">
+<ul id="news">
+{% for message in messages %}
+<li><a href="/{{message.app}}" class="msg">{{message.sentence}}</a></li>
+{% endfor %}
+</ul>
+
+<script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+<script type="text/javascript" src="/static/slick/slick.min.js"></script>
+<script>
+ $('.carousel').slick({
+  dots: true,
+    autoplay: true,
+  autoplaySpeed: 2000,
+  slidesToShow: 1,
+    fade: true,
+  slide: 'div',
+  cssEase: 'linear'
+            });
+ $('.carousel').css('display','block')
+</script>
+{% endblock %}

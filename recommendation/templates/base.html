@@ -17,7 +17,7 @@
 <style>
  body {         background-size:cover; 
                 background-attachment:fixed;
-                background-image: url("/static/images/post.png");              
+                background-image: url("/static/images/silicon.jpg");              
             }
 footer {
     color:grey;
@@ -33,25 +33,28 @@ footer {
 .navli{
   height:4em;
   float:left;
-  position:relative;
-  top:-3em;
+
 }
 .nava { 
   padding:10px;
   text-decoration: none;
   font-size: 1.2em;
-  color:#4169e1;
+  color:white;
   width: 100px; 
   height: 60px; 
-  border-left:solid 3px #4169e1;
-  background-color: rgba(255,255,255,.85)
-  
+
 } 
 
+
 .nava:hover { 
-  color:white;
-  background-color:#4169e1
+  border:0px;
+  color:#48d1cc;
 }
+#navul{background-color: rgba(255,255,255,.85);  
+  position:relative;
+  top:-3em;
+ }
+
 </style>
 </head>
     </head>
@@ -59,6 +62,7 @@ footer {
 
 <div id="nav">
 <ul id="navul">
+  <li class="navli"><a class="nava" href="/">Home</a></li>
   <li class="navli"><a class="nava" href="/recommendation">Recommendation</a></li>
   <li class="navli"><a class="nava" href="/album">Album</a></li>
   <li class="navli"><a class="nava" href="/doc">Document</a></li>
