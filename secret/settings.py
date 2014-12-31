@@ -40,6 +40,7 @@ INSTALLED_APPS = (
     'album',
     'doc',
     'portal',
+    'count',
     )
 
 MIDDLEWARE_CLASSES = (

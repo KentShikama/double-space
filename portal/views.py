@@ -7,5 +7,5 @@ from portal.models import Message
 
 def index(request):
 	pictures=Picture.objects.order_by('-date')[:10]
-	messages=Message.objects.order_by('-date')[:10]
+	messages=Message.objects.order_by('-date')[:6]
 	return render(request,"gate.html",{'pictures':pictures,'messages':messages})
