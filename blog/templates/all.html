@@ -1,0 +1,52 @@
+{% extends "blogbase.html" %}
+{% block titleblock%}
+<title>Blog</title>
+<style>
+#content,h3{
+	font-family: cursive;
+}
+#content{
+	font-size: 1.2em; margin-bottom: 2em;
+}
+.time{margin-left: 2em;}
+
+</style>
+{% endblock %}
+{% block bodyblock %}
+{% for article in articles%}
+<div class="item">
+<h3><a href="/blog/{{article.poster.username}}/{{article.id}}">{{article.title}}</a></h1>
+<a href="/blog/{{article.poster.username}}">{{article.poster.username}}</a>
+<span class="time">{{article.date}}</span> 
+{% if user == host %}
+<a href="/blog/{{host.username}}/{{article.id}}/edit">edit</a>
+{% endif %}
+<br>
+<div id="content">
+{% if not singleArticle%}
+{{article.someContent|safe}}
+{% endif %}
+{% if singleArticle %}
+{{article.content|safe}}
+{% endif %}
+</div>
+</div>
+{% endfor %}
+{% if singleArticle %}
+ <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'doublespace'; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    
+{% endif %}
+   
+{% endblock %}

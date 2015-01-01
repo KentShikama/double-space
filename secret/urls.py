@@ -14,6 +14,6 @@ urlpatterns = patterns('',
     url(r'^album/',include("album.urls")),
     url(r'^recommendation/',include("recommendation.urls")),
     url(r'^doc/',include("doc.urls")),
-    url(r'^count/',include("count.urls"))
-
+    url(r'^count/',include("count.urls")),
+    url(r'^blog/',include("blog.urls"))
 )

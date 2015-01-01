@@ -45,7 +45,7 @@ def login(request):
 		user = authenticate(username=username,password=password)
 		if user:
 			do_login(request,user)
-			return redirect('/recommendation')
+			return redirect('/')
 		else:
 			users = User.objects.all()
 			context = {'invalid_login':True,'users':users}

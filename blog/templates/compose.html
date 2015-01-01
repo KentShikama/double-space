@@ -1,0 +1,25 @@
+{% extends "blogbase.html" %}
+
+
+{% block titleblock%}
+<title>New Blog</title>
+<style>
+.button-primary{
+	margin: 2em;
+	color: grey;
+}
+</style>
+  {% load wysiwyg %}
+  {% wysiwyg_setup %}
+{% endblock %}
+
+
+{% block bodyblock %}
+<form method="POST" action="">
+	 {% csrf_token %}
+<input type="text" placeholder="title" id="title" name="title">
+<textarea name="content"  id="comp"></textarea>
+{% wysiwyg_editor "comp" %}
+<input class="button-primary" type="submit" value="Submit">
+</form>
+{% endblock %}

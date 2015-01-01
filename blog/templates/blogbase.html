@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+                    {% block titleblock %}
+                    {% endblock %}
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="">
+        <meta name="author" content="">
+  
+  <link rel="stylesheet" href="/static/css/normalize.css">
+  <link rel="stylesheet" href="/static/css/skeleton.css">
+
+  <!-- Favicon
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="icon" type="image/png" href="/static/images/favicon.png" />
+<style>
+body{
+  background: rgb(235,235,235);
+}
+#nav{
+position: absolute;
+top:0px;
+background: rgb(0,0,0);
+width:100%;
+}
+.navli{
+  float:left;
+  margin-left: 2em;
+
+}
+.nava{
+    font-family: cursive;
+  color: white;
+  font-size: 2em;
+  text-decoration: none;
+}
+#block{
+  padding:2em;
+  width:65%;
+  margin-top: 10%;
+  margin-left: 10%;
+  background:rgb(255,255,255);
+}
+
+</style>
+</head>
+
+<body>
+
+<div id ="nav">
+  <ul id="navul">
+    {% if not singlePerson %}
+    <li class="navli"><a class="nava" href="/">Home</a></li>
+    {% for user in users %}
+    {% if user.username != "admin" %}
+    <li class="navli person"><a class="nava" href="/blog/{{user.username}}">{{user.username}}'s</a></li>
+    {% endif %}
+    {% endfor %}
+    {% endif %}
+    {% if singlePerson %}
+    <li class="navli person"><a class="nava" href="/blog/{{host.username}}">{{host.username}}'s Blog</a></li>
+    {% if not singleArticle%}
+    <li class="navli"><a class="nava" href="/blog" >Back</a></li>
+    {% endif %}
+    {% if singleArticle%}
+    <li class="navli"><a class="nava" href="/blog/{{host.username}}" >Back</a></li>
+    {% endif %}
+    {% endif %}
+    {% if user.is_superuser %}
+    <li class="navli"><a class="nava" href="/blog/compose" style="font-family:serif;">Compose</a></li>
+    {% endif %}
+  </ul>
+</div>
+  <div id="block">
+  {% block bodyblock %}   
+  {% endblock %}
+  <br>
+</div>
+
+</body>

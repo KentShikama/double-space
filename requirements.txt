@@ -2,3 +2,4 @@ Django==1.7.1
 Pillow==2.6.1
 requests==2.5.1
 beautifulsoup4==4.3.2
+django-wysiwyg==0.7.0

@@ -1,0 +1,52 @@
+from django.http import HttpResponse
+from django.shortcuts import render,redirect
+from blog.models import Article
+from django.contrib.auth.models import User
+
+# Create your views here.
+
+def all(request):
+	single = False
+	articles=Article.objects.order_by('-date')[:10]
+	users = User.objects.filter(is_superuser=True)
+	return render(request,'all.html',{'users':users,'articles':articles,'single':single})
+
+def person(request,person):
+	singlePerson = True
+	host=User.objects.get(username=person)
+	articles=Article.objects.filter(poster=host).order_by('-date')[:10]
+	users = User.objects.filter(is_superuser=True)
+	return render(request,'all.html',{'users':users,'articles':articles,'singlePerson':singlePerson,'host':host})
+
+def article(request,person,article):
+	singleArticle = True
+	singlePerson = True
+	host=User.objects.get(username=person)
+	articles=Article.objects.filter(id=article)
+	users = User.objects.filter(is_superuser=True)
+	return render(request,'all.html',{'users':users,'articles':articles,'singleArticle':singleArticle,'singlePerson':singlePerson,'host':host})
+
+def compose(request):
+	if request.method == "GET":
+		return render(request,'compose.html')
+	else:
+		title = request.POST['title']
+		content = request.POST['content']
+		poster = request.user
+		article = Article(title=title,content=content,poster=poster)
+		article.save()
+		return redirect('/blog/'+request.user.username)
+
+def edit(request,person,article):
+	if request.method == "GET":
+		piece = Article.objects.all().get(id=article)
+		return render(request,'edit.html',{'article':piece})
+	else:
+		title = request.POST['title']
+		content = request.POST['content']
+		if request.user.username == person:
+			piece = Article.objects.all().get(id=article)
+			piece.title=title
+			piece.content=content
+			piece.save()
+		return redirect('/blog/'+request.user.username)
