@@ -27,8 +27,10 @@ img {padding:10px;}
 {% block bodyblock %}
 
 
-
+{% if user.is_superuser %}
 <a href="/recommendation/post/"> <button class="button-primary">New</button> </a>
+{% endif %}
+
 {% if incomplete %}
 <a href="/recommendation/" id="back">Back</a>
 {% endif %}

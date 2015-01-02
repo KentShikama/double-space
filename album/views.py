@@ -12,12 +12,13 @@ def index(request):
 	return render(request,"main.html",{'pictures':pictures})
 
 def upload(request):
-	pics = request.FILES.getlist('photo')
-	count = len(pics)
-	for pic in pics:
-		picture = Picture(image=pic)
-		picture.save()
-	message = Message(poster=request.user,app="album",activity="uploaded "+str(count)+" photos.")
-	message.save()
+	if request.user.is_superurser:
+		pics = request.FILES.getlist('photo')
+		count = len(pics)
+		for pic in pics:
+			picture = Picture(image=pic)
+			picture.save()
+		message = Message(poster=request.user,app="album",activity="uploaded "+str(count)+" photos.")
+		message.save()
 	return redirect('/album/')
 

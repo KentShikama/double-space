@@ -21,10 +21,11 @@ def display(request):
 		return redirect('/doc/')
 
 def new(request):
-	title = request.POST['title']
-	content = request.POST['content']
-	a=Document(title=title,content=content)
-	a.save()
-	message = Message(poster=request.user,app="doc",activity="created a document named '"+title+"'.")
-	message.save()
+	if request.user.is_superuser:
+		title = request.POST['title']
+		content = request.POST['content']
+		a=Document(title=title,content=content)
+		a.save()
+		message = Message(poster=request.user,app="doc",activity="created a document named '"+title+"'.")
+		message.save()
 	return redirect('/doc/')

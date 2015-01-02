@@ -27,6 +27,8 @@
 {% endblock %}
 
 {% block bodyblock %}
+
+{% if user.is_superuser %}
 <button class="button-primary" id="newBut">New</button> 
 
 <div class="item new">
@@ -37,7 +39,7 @@
     <input class="button" type="submit" value="Submit">
 </form>
 </div>
-
+{% endif %}
 
 {% if docs %}
 {% for doc in docs %}
@@ -46,9 +48,14 @@
 	    {% csrf_token %}
     <input type="hidden" name="id" value="{{doc.id}}">
 	<input type="text" name="title" disabled="disabled" value="{{doc.title}}" class="title"><br>
+	{% if user.is_superuser %}
 	<a href="javascript:void(0)" class="edit">edit</a><br>
 	<textarea name="content" class="content" disabled="disabled">{{doc.content}}</textarea><br>
     <input class="button" type="submit" value="Submit">
+    {% endif %}
+    {% if not user.is_superuser %}
+    <textarea name="content" class="content" disabled="disabled">You are not supposed to read this</textarea><br>
+    {% endif %}
 </form>
 </div>
 {% endfor %}

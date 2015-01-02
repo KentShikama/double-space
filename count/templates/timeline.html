@@ -41,9 +41,9 @@ form{
 {% endblock %}
 
 {% block bodyblock %}
-
+{% if user.is_superuser %}
 <a href="javascript:void(0)"> <button class="new button-primary">New</button> </a>
-
+{% endif %}
 <form action="" method="post">
 	 {% csrf_token %}
 <label for="titleF">Title</label>

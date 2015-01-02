@@ -19,8 +19,11 @@ def category(request,category_name):
 
 def post(request):
 	if request.method == "GET":
-		categories = Category.objects.all()
-		return render(request,"post.html",{'categories':categories})
+		if request.user.is_superuser:
+			categories = Category.objects.all()
+			return render(request,"post.html",{'categories':categories})
+		else:
+			return redirect('/recommendation')
 	else:
 		title = request.POST['title']
 		category = Category.objects.get(name = request.POST['category'])
