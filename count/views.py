@@ -13,6 +13,7 @@ def timeline(request):
 				past.append(event)
 			else:
 				future.append(event)
+		future.reverse()
 		return render(request,'timeline.html',{'pasts':past,'futures':future})
 	else:
 		title = request.POST['title']

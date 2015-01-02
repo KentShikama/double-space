@@ -18,7 +18,10 @@
 	color:red;
 	background-color: rgba(255,255,255,.5);
 }
-.future:hover,.past:hover{
+.past:hover{
+	font-size: 1.2em;
+}
+.future:hover {
 	font-size: 1.2em;
 }
 .new{
@@ -43,7 +46,7 @@ form{
 {% block bodyblock %}
 {% if user.is_superuser %}
 <a href="javascript:void(0)"> <button class="new button-primary">New</button> </a>
-{% endif %}
+
 <form action="" method="post">
 	 {% csrf_token %}
 <label for="titleF">Title</label>
@@ -53,7 +56,7 @@ form{
 <br>
 <input class="button-primary" id="submit" type="submit" value="Submit">
 </form>
-
+{% endif %}
 <div class="ls">
 <ul id="past">
 	{% for past in pasts %}
@@ -73,10 +76,5 @@ $('form').hide();
 $('.new').click(function(){
 	$('form').fadeIn();
 })
-var list = $("#future li").get().reverse();
-            $("#future").empty();
-$.each(list, function(i){
-                $("#future").append("<li>"+list[i].innerHTML+"</li>");
-            });
 </script>
 {% endblock %}
