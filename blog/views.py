@@ -2,14 +2,14 @@ from django.http import HttpResponse
 from django.shortcuts import render,redirect
 from blog.models import Article
 from django.contrib.auth.models import User
+from portal.models import Message
 
 # Create your views here.
 
 def all(request):
-	single = False
 	articles=Article.objects.order_by('-date')[:10]
 	users = User.objects.filter(is_superuser=True)
-	return render(request,'all.html',{'users':users,'articles':articles,'single':single})
+	return render(request,'all.html',{'users':users,'articles':articles})
 
 def person(request,person):
 	singlePerson = True
@@ -35,6 +35,8 @@ def compose(request):
 		poster = request.user
 		article = Article(title=title,content=content,poster=poster)
 		article.save()
+		message = Message(poster=request.user,app="blog/"+request.user.username,activity="wrote a new blog '"+title+"'.")
+		message.save()
 		return redirect('/blog/'+request.user.username)
 
 def edit(request,person,article):
@@ -49,4 +51,6 @@ def edit(request,person,article):
 			piece.title=title
 			piece.content=content
 			piece.save()
+			message = Message(poster=request.user,app="blog/"+request.user.username+"/"+article,activity="updated the blog '"+title+"'.")
+			message.save()
 		return redirect('/blog/'+request.user.username)

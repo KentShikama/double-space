@@ -4,7 +4,7 @@
 <title>upload</title>
 <style>
 img.small {width: 200px;height: 120px;border-left;float:left;cursor:pointer;}
-img:hover {width:190px;height:115px;border:solid 2px white;float:left;}
+.true:hover {width:190px;height:115px;border:solid 2px white;float:left;}
 </style>
 {% endblock %}
 
@@ -24,9 +24,12 @@ img:hover {width:190px;height:115px;border:solid 2px white;float:left;}
 <div class="ten columns">
 <ul>
 {% for picture in pictures %}
-
-<li><img class="small" src="/static/{{picture.title}}"></li>
-
+{% if user.is_superuser %}
+<li><img class="small true" src="/static/{{picture.title}}"></li>
+{% endif %}
+{% if not user.is_superuser %}
+<li><img class="small" src="/static/secret.png"></li>
+{% endif %}
 {% endfor %}
 </ul>
 </div>
@@ -42,20 +45,20 @@ $('#file').change(function(){
 	$('#info').html(file)
 });
 
-$('img').click(function(){
+$('.true').click(function(){
 if (click == false){
-	$('img').hide();
+	$('.true').hide();
 	$(this).show();
 	$(this).height($(this)[0].naturalHeight);
 	$(this).width($(this)[0].naturalWidth);
     click = true;
-    $('img').css('cursor','url(http://www.rw-designer.com/cursor-extern.php?id=2843)');
+    $('.true').css('cursor','url(http://www.rw-designer.com/cursor-extern.php?id=2843)');
     }
  else {
- 	$('img').show();
-	$('img').width(200).height(120);
+ 	$('.true').show();
+	$('.true').width(200).height(120);
 	click = false;
-	$('img').css('cursor','url(http://www.rw-designer.com/cursor-extern.php?id=2843)');
+	$('.true').css('cursor','url(http://www.rw-designer.com/cursor-extern.php?id=2843)');
  }
 });
 </script>
