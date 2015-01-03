@@ -12,23 +12,20 @@ def all(request):
 	return render(request,'all.html',{'users':users,'articles':articles})
 
 def person(request,person):
-	singlePerson = True
 	host=User.objects.get(username=person)
 	articles=Article.objects.filter(poster=host).order_by('-date')[:10]
 	users = User.objects.filter(is_superuser=True)
-	return render(request,'all.html',{'users':users,'articles':articles,'singlePerson':singlePerson,'host':host})
+	return render(request,'all.html',{'users':users,'articles':articles,'singlePerson':True,'host':host})
 
 def article(request,person,article):
-	singleArticle = True
-	singlePerson = True
 	host=User.objects.get(username=person)
 	articles=Article.objects.filter(id=article)
 	users = User.objects.filter(is_superuser=True)
-	return render(request,'all.html',{'users':users,'articles':articles,'singleArticle':singleArticle,'singlePerson':singlePerson,'host':host})
+	return render(request,'all.html',{'users':users,'articles':articles,'singleArticle':True,'singlePerson':True,'host':host})
 
 def compose(request):
 	if request.method == "GET":
-		return render(request,'compose.html')
+		return render(request,'compose.html',{'singlePerson':True,'singleArticle':True,'host':request.user})
 	else:
 		title = request.POST['title']
 		content = request.POST['content']
@@ -42,7 +39,7 @@ def compose(request):
 def edit(request,person,article):
 	if request.method == "GET":
 		piece = Article.objects.all().get(id=article)
-		return render(request,'edit.html',{'article':piece})
+		return render(request,'edit.html',{'article':piece,'singlePerson':True,'singleArticle':True,'host':request.user})
 	else:
 		title = request.POST['title']
 		content = request.POST['content']
