@@ -12,7 +12,7 @@ def index(request):
 	return render(request,"main.html",{'pictures':pictures})
 
 def upload(request):
-	if request.user.is_superurser:
+	if request.user.is_superuser:
 		pics = request.FILES.getlist('photo')
 		count = len(pics)
 		for pic in pics:
