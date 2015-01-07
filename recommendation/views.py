@@ -13,8 +13,8 @@ def index(request):
 	return render(request, 'index.html',{'threads': Thread.objects.order_by('-date'),'categories':Category.objects.all()})
 
 def category(request,category_name):
-	category = Category.objects.filter(name=category_name)
-	threads = Thread.objects.filter(category=category)
+	category = Category.objects.get(name=category_name)
+	threads = category.thread_set.all()
 	return render(request,'index.html',{'threads':threads,'incomplete':True})
 
 def post(request):

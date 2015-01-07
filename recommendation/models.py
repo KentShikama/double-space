@@ -11,7 +11,7 @@ class Category(models.Model):
 		return self.name
 
 class Thread(models.Model):
-	title = models.CharField(max_length=128)
+	title = models.CharField(max_length=128,blank=False)
 	poster = models.ForeignKey(User)
 	image_link=models.TextField(default=None, blank=True, null=True)
 	detail_link=models.TextField(default=None, blank=True, null=True)

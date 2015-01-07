@@ -30,7 +30,6 @@
 
 {% if user.is_superuser %}
 <button class="button-primary" id="newBut">New</button> 
-
 <div class="item new">
 <form action="new/" method="post">
 	    {% csrf_token %}
