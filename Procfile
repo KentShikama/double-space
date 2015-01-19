@@ -1,1 +1,1 @@
-web: gunicorn secret.wsgi --workers $WEB_CONCURRENCY
+web: gunicorn --log-file=- secret.wsgi --workers $WEB_CONCURRENCY
