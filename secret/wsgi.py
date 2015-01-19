@@ -15,4 +15,4 @@ from django.core.wsgi import get_wsgi_application
 
 application = get_wsgi_application()
 application = DjangoWhiteNoise(application)
-#application = Cling(application)
+application = Cling(application)
