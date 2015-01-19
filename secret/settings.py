@@ -24,7 +24,7 @@ DEBUG = False
 
 TEMPLATE_DEBUG = True
 
-ALLOWED_HOSTS = ['localhost','doublespace.heroku.com']
+ALLOWED_HOSTS = ['localhost','doublespace.herokuapp.com']
 
 
 # Application definition
