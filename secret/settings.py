@@ -97,4 +97,4 @@ STATIC_ROOT = '/opt/myenv/static_doublespace/'
 
 DJANGO_WYSIWYG_FLAVOR = "ckeditor"
 
-STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
+#STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
